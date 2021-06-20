@@ -1,0 +1,45 @@
+=================================================================
+==4540==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x61400000ffd4 at pc 0x00000040083f bp 0x7ffd02f7ec70 sp 0x7ffd02f7ec60
+READ of size 4 at 0x61400000ffd4 thread T0
+    #0 0x40083e in main /home/temp/Desktop/result interpretations/heap_buffer_overflow.cpp:5
+    #1 0x7fb479aef83f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2083f)
+    #2 0x400708 in _start (/home/temp/Desktop/result interpretations/a.out+0x400708)
+
+0x61400000ffd4 is located 4 bytes to the right of 400-byte region [0x61400000fe40,0x61400000ffd0)
+allocated by thread T0 here:
+    #0 0x7fb479f326b2 in operator new[](unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x996b2)
+    #1 0x4007e2 in main /home/temp/Desktop/result interpretations/heap_buffer_overflow.cpp:3
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/temp/Desktop/result interpretations/heap_buffer_overflow.cpp:5 main
+Shadow bytes around the buggy address:
+  0x0c287fff9fa0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff9fb0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff9fc0: fa fa fa fa fa fa fa fa 00 00 00 00 00 00 00 00
+  0x0c287fff9fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c287fff9fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c287fff9ff0: 00 00 00 00 00 00 00 00 00 00[fa]fa fa fa fa fa
+  0x0c287fffa000: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fffa010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fffa020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fffa030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fffa040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+==4540==ABORTING
