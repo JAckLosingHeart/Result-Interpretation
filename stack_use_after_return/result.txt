@@ -1,0 +1,47 @@
+=================================================================
+==8446==ERROR: AddressSanitizer: stack-use-after-return on address 0x7f0b7a700024 at pc 0x000000400a07 bp 0x7fff00b75b60 sp 0x7fff00b75b50
+READ of size 4 at 0x7f0b7a700024 thread T0
+    #0 0x400a06 in main /home/temp/Desktop/result interpretations/stack_use_after_return.cpp:13
+    #1 0x7f0b7def683f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2083f)
+    #2 0x4007f8 in _start (/home/temp/Desktop/result interpretations/a.out+0x4007f8)
+
+Address 0x7f0b7a700024 is located in stack of thread T0 at offset 36 in frame
+    #0 0x4008d5 in FunctionThatEscapesLocalObject() /home/temp/Desktop/result interpretations/stack_use_after_return.cpp:6
+
+  This frame has 1 object(s):
+    [32, 432) 'local' <== Memory access at offset 36 is inside this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism or swapcontext
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-use-after-return /home/temp/Desktop/result interpretations/stack_use_after_return.cpp:13 main
+Shadow bytes around the buggy address:
+  0x0fe1ef4d7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0fe1ef4d7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0fe1ef4d7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0fe1ef4d7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0fe1ef4d7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0fe1ef4d8000: f5 f5 f5 f5[f5]f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5
+  0x0fe1ef4d8010: f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5
+  0x0fe1ef4d8020: f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5
+  0x0fe1ef4d8030: f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 f5 00 00 00 00
+  0x0fe1ef4d8040: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0fe1ef4d8050: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+==8446==ABORTING
